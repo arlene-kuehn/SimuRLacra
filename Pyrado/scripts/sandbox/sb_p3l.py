@@ -83,6 +83,7 @@ def create_ik_activation_setup(dt, max_steps, max_dist_force, physics_engine):
         checkJointLimits=False,
         collisionAvoidanceIK=True,
         observeTaskSpaceDiscrepancy=True,
+        observePredictedCollisionCost=True,  # TODO failure if True
     )
     print_domain_params(env.domain_param)
 
