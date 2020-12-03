@@ -92,7 +92,7 @@ def create_ik_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, chec
     return env, policy
 
 
-def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     # Set up environment
     env = BoxFlippingPosDSSim(
         usePhysicsNode=True,
@@ -140,7 +140,7 @@ def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_f
     return env, policy
 
 
-def create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     # Set up environment
     env = BoxFlippingVelDSSim(
         usePhysicsNode=True,
@@ -196,10 +196,10 @@ if __name__ == '__main__':
     elif setup_type == 'ik':
         env, policy = create_ik_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits)
     elif setup_type == 'pos':
-        env, policy = create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
+        env, policy = create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
                                                 checkJointLimits)
     elif setup_type == 'vel':
-        env, policy = create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
+        env, policy = create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
                                                 checkJointLimits)
     else:
         raise pyrado.ValueErr(given=setup_type, eq_constraint="'idle', 'pos', 'vel', or 'ik_activation'")

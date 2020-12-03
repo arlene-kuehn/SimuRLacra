@@ -145,7 +145,7 @@ def create_ik_activation_setup(physicsEngine, graphFileName, dt, max_steps, ref_
     return env, policy
 
 
-def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     def policy(t: float):
         return [0.2, 0,
                 0.5, 0]
@@ -180,7 +180,7 @@ def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_f
     return env, policy
 
 
-def create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     def policy(t: float):
         return [1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1]
@@ -234,9 +234,9 @@ if __name__ == '__main__':
     elif setup_type == 'ik_activation':
         env, policy = create_ik_activation_setup(**common_hparam)
     elif setup_type == 'ds_activation_pos':
-        env, policy = create_position_mps_setup(**common_hparam)
+        env, policy = create_pos_mps_setup(**common_hparam)
     elif setup_type == 'ds_activation_vel':
-        env, policy = create_velocity_mps_setup(**common_hparam)
+        env, policy = create_vel_mps_setup(**common_hparam)
     else:
         raise pyrado.ValueErr(given=setup_type, eq_constraint="'idle', 'ds_activation_pos', 'ds_activation_vel")
 

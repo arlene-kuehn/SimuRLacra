@@ -63,7 +63,7 @@ def create_idle_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, ch
     return env, policy
 
 
-def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     def policy(t: float):
         # return [1, 0, 1, 1, 1,
         #         0, 0, 0, 0, 0, 1]
@@ -101,7 +101,7 @@ def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_f
     return env, policy
 
 
-def create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     def policy(t: float):
         if t < 2:
             return [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
@@ -160,9 +160,9 @@ if __name__ == '__main__':
     if setup_type == 'idle':
         env, policy = create_idle_setup(**common_hparam)
     elif setup_type == 'pos':
-        env, policy = create_position_mps_setup(**common_hparam)
+        env, policy = create_pos_mps_setup(**common_hparam)
     elif setup_type == 'vel':
-        env, policy = create_velocity_mps_setup(**common_hparam)
+        env, policy = create_vel_mps_setup(**common_hparam)
     else:
         raise pyrado.ValueErr(given=setup_type, eq_constraint="'idle', 'pos', 'vel")
 

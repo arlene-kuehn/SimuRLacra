@@ -63,7 +63,7 @@ def create_idle_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, ch
     return env, policy
 
 
-def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
+def create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits):
     def policy_fcn(t: float):
         return [0, 0, 1,  # PG position
                 0, 0,  # PG orientation
@@ -103,7 +103,7 @@ def create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_f
     return env, policy
 
 
-def create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, bidirectional_mps,
+def create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, bidirectional_mps,
                               checkJointLimits):
     if bidirectional_mps:
         def policy_fcn(t: float):
@@ -199,10 +199,10 @@ if __name__ == '__main__':
     if setup_type == 'idle':
         env, policy = create_idle_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame, checkJointLimits)
     elif setup_type == 'pos':
-        env, policy = create_position_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
+        env, policy = create_pos_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
                                                 checkJointLimits)
     elif setup_type == 'vel':
-        env, policy = create_velocity_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
+        env, policy = create_vel_mps_setup(physicsEngine, graphFileName, dt, max_steps, ref_frame,
                                                 bidirectional_mps, checkJointLimits)
     else:
         raise pyrado.ValueErr(given=setup_type, eq_constraint="'idle', 'pos', or 'vel'")

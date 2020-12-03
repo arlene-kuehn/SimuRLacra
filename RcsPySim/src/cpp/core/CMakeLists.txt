@@ -37,7 +37,6 @@ set(CORE_SRCS
     ECBallOnPlate.cpp
     ECBoxFlipping.cpp
     ECBoxLifting.cpp
-    ECBoxLiftingSimple.cpp
     ECBoxShelving.cpp
     ECMPBlending.cpp
     ECPlanar3Link.cpp
@@ -58,7 +57,6 @@ set(CORE_SRCS
     initState/ISSBallOnPlate.cpp
     initState/ISSBoxFlipping.cpp
     initState/ISSBoxLifting.cpp
-    initState/ISSBoxLiftingSimple.cpp
     initState/ISSBoxShelving.cpp
     initState/ISSMPBlending.cpp
     initState/ISSPlanar3Link.cpp
