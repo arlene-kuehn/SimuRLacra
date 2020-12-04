@@ -254,34 +254,34 @@ protected:
     {
         // Observe effector positions (and velocities)
         std::unique_ptr<OMCombined> fullState(new OMCombined());
-        
+    
         auto omLeftLin = new OMBodyStateLinear(graph, "PowerGrasp_L"); // in world coordinates
-        omLeftLin->setMinState({0., -1.6, 0.75});  // [m]
-        omLeftLin->setMaxState({1.6, 1.6, 1.5});  // [m]
+        omLeftLin->setMinState({0.4, -0.8, 0.6});  // [m]
+        omLeftLin->setMaxState({1.6, 0.8, 1.4});  // [m]
         omLeftLin->setMaxVelocity(3.); // [m/s]
         fullState->addPart(omLeftLin);
-        
+    
         auto omRightLin = new OMBodyStateLinear(graph, "PowerGrasp_R"); // in world coordinates
-        omRightLin->setMinState({0., -1.6, 0.75});  // [m]
-        omRightLin->setMaxState({1.6, 1.6, 1.5});  // [m]
+        omRightLin->setMinState({0.4, -0.8, 0.6});  // [m]
+        omRightLin->setMaxState({1.6, 0.8, 1.4});  // [m]
         omRightLin->setMaxVelocity(3.); // [m/s]
         fullState->addPart(omRightLin);
-        
+    
         // Observe box positions (and velocities)
 //        auto omBoxLin = new OMBodyStateLinear(graph, "Box", "Table", "Table");  // in relative coordinates
 //        omBoxLin->setMinState({-0.6, -0.8, -0.1});  // [m]
 //        omBoxLin->setMaxState({0.6, 0.8, 1.});  // [m]
         auto omBoxLin = new OMBodyStateLinear(graph, "Box"); // in world coordinates
-        omBoxLin->setMinState({0.9, -0.8, 0.66});  // [m]
-        omBoxLin->setMaxState({2.1, 0.8, 1.26});  // [m]
-        omBoxLin->setMaxVelocity(5.); // [m/s]
+        omBoxLin->setMinState({0.4, -0.8, 0.6});  // [m]
+        omBoxLin->setMaxState({1.6, 0.8, 1.4});  // [m]
+        omBoxLin->setMaxVelocity(3.); // [m/s]
         fullState->addPart(omBoxLin);
-        
+    
         // Observe box orientations (and velocities)
         auto omBoxAng = new OMBodyStateAngular(graph, "Box"); // in world coordinates
         omBoxAng->setMaxVelocity(RCS_DEG2RAD(720)); // [rad/s]
         fullState->addPart(omBoxAng);
-        
+    
         // Add goal distances
         if (properties->getPropertyBool("observeDynamicalSystemGoalDistance", false)) {
             auto amAct = actionModel->unwrap<AMDynamicalSystemActivation>();
